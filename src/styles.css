@@ -1,0 +1,38 @@
+body {
+  font-family: Arial;
+  padding: 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.clickable-property {
+  color: cornflowerblue;
+}
+
+.key,
+.indented {
+  margin-left: 10px;
+}
+
+.monospace {
+  font-family: monospace;
+}
+
+.text-box {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+}
+
+.response {
+  height: 20px;
+  margin-bottom: 5px;
+}
+
+.label, .response {
+  color: rgba(0, 0, 0, 0.7);
+}
