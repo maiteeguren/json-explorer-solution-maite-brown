@@ -19,8 +19,8 @@ export const useInput = () => {
       }
     })
 
-    // Only display strings, numbers, boolean and undefined types
-    if (typeof res !== 'object') {
+    // Hide arrays and hashes (i.e user types res.fields)
+    if (typeof res !== 'object' || res === null) {
       setInputResponse(String(res))
     }
   }

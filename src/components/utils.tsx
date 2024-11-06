@@ -1,6 +1,6 @@
 import React from 'react';
 import { Data, OnChangeInput, Property } from './types';
-import ResponseObject from './ResponseObject';
+import MappedObject from './MappedObject';
 
 const ASCII_CODES = {
   leftSquareBracket: <>&#91;</>,
@@ -25,7 +25,7 @@ export const getContent = (object: Data, key: Property, onChangeInput: OnChangeI
           <>
             {leftSquareBracket}
             {object[key].map((elem: Data, index: number) =>
-              <ResponseObject
+              <MappedObject
                 object={elem}
                 onChangeInput={onChangeInput}
                 path={`${objectPath}[${index}]`}
@@ -37,7 +37,7 @@ export const getContent = (object: Data, key: Property, onChangeInput: OnChangeI
         // This is not needed for this demo but in case the object is not null/array
         clickable = false
         content =
-          <ResponseObject object={object[key]} onChangeInput={onChangeInput} path={objectPath} />
+          <MappedObject object={object[key]} onChangeInput={onChangeInput} path={objectPath} />
         break
       }
     default:

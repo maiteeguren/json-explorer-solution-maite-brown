@@ -1,7 +1,7 @@
 import React from "react";
 import { Data, OnChangeInput } from "./types";
 import { getContent } from "./utils";
-import PropertyWrapper from './PropertyWrapper'
+import MappedPropertyWrapper from './MappedPropertyWrapper'
 
 type Props = { object: Data, onChangeInput: OnChangeInput, path?: string, hideBrackets?: boolean }
 
@@ -10,7 +10,7 @@ const ASCII_CODES = {
   rightCurlyBracket: <>&#125;</>,
 }
 
-export default function ResponseObject({ object, onChangeInput, path, hideBrackets = false }: Props) {
+export default function MappedObject({ object, onChangeInput, path, hideBrackets = false }: Props) {
   const { leftCurlyBracket, rightCurlyBracket } = ASCII_CODES
 
   return (
@@ -20,9 +20,9 @@ export default function ResponseObject({ object, onChangeInput, path, hideBracke
         const { content, onClick, clickable, objectPath } = getContent(object, key, onChangeInput, path)
 
         return (
-          <PropertyWrapper key={key} property={key} onClick={onClick} clickable={clickable} path={objectPath}>
+          <MappedPropertyWrapper key={key} property={key} onClick={onClick} clickable={clickable} path={objectPath}>
             {content}
-          </PropertyWrapper>
+          </MappedPropertyWrapper>
         )
       })}
       {!hideBrackets && rightCurlyBracket}
