@@ -1,7 +1,7 @@
 {
   "name": "react-typescript",
   "version": "1.0.0",
-  "description": "React and TypeScript example starter project",
+  "description": "JSON Explorer Challenge Summary",
   "keywords": [
     "typescript",
     "react",
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@types/react": "18.2.38",
     "@types/react-dom": "18.2.15",
+    "lint": "^0.8.19",
     "typescript": "4.4.4"
   },
   "scripts": {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Data, OnChangeInput, Property } from './types';
 import ResponseObject from './ResponseObject';
 
@@ -37,8 +37,7 @@ export const getContent = (object: Data, key: Property, onChangeInput: OnChangeI
                   {rightCurlyBracket}
                 </div>
               )
-            }
-            )}
+            })}
             {rightSquareBracket}
           </>
         break

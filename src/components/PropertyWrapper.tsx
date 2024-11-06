@@ -1,5 +1,5 @@
 import React from "react";
-import { Data, Property } from "./types";
+import { Property } from "./types";
 
 type Props = { onClick: () => void, property: Property, children: React.ReactNode, clickable: boolean, path: string }
 
