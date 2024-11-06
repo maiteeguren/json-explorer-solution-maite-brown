@@ -6,32 +6,35 @@ import PropertyWrapper from "./components/PropertyWrapper";
 type Data = Record<string, any>
 
 export default function App() {
-  const [input, setInput] = useState('')
-  const [resp, setRespt] = useState<SetStateAction<string>>('')
+  const [inputProperty, setInputProperty] = useState('')
+  const [inputResponse, setInputResponse] = useState<SetStateAction<string>>('')
 
   
   const getReponse = (path: string) => {
+    setInputResponse('')
+
     /* Split path to get individual key */
     const parsedPath = path.split(/\[|\]|\./).filter(Boolean)    
     let res = demodata
 
     parsedPath.forEach((field: string) => {
-      if (field && field !== 'res') {
+      // Ignore 
+      if (field !== 'res') {
         res = res[field]
       }
     })
     
-    setRespt(String(res))
+    setInputResponse(String(res))
   }
 
   useEffect(() => {
-    getReponse(input)
-  }, [input])
+    getReponse(inputProperty)
+  }, [inputProperty])
 
   const getContent = (object: Data, key: string, path = 'res') => {
     const objectPath: string = `${path}.${key}`
     let onClick = () => {
-      setInput(objectPath)
+      setInputProperty(objectPath)
     }
     let clickable = true
     let content
@@ -74,10 +77,10 @@ export default function App() {
     <div className="App">
       <div>
         <label htmlFor="property-input" className="label">Property</label>
-        <input type="text" id="property-input" className="monospace text-box" value={input} onChange={(e) => setInput(e.target.value)}/>
+        <input type="text" id="property-input" className="monospace text-box" value={inputProperty} onChange={(e) => setInputProperty(e.target.value)}/>
       </div>
       <div className="monospace response">
-        <>{resp}</>
+        <>{inputResponse}</>
       </div>
       <div>
         <div className="label">Response</div>
