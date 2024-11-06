@@ -3,13 +3,12 @@ import { Data, OnChangeInput, Property } from './types';
 import ResponseObject from './ResponseObject';
 
 const ASCII_CODES = {
-  leftCurlyBracket: <>&#123;</>,
-  rightCurlyBracket: <>&#125;</>,
   leftSquareBracket: <>&#91;</>,
   rightSquareBracket: <>&#93;</>,
 }
 
 export const getContent = (object: Data, key: Property, onChangeInput: OnChangeInput, path = 'res') => {
+  const { leftSquareBracket, rightSquareBracket } = ASCII_CODES
   const objectPath: string = `${path}.${key}`
   const onClick = () => onChangeInput(objectPath)
   let clickable = true
@@ -22,24 +21,23 @@ export const getContent = (object: Data, key: Property, onChangeInput: OnChangeI
     case "object":
       if (Array.isArray(object[key])) {
         clickable = false
-        const { leftCurlyBracket, rightCurlyBracket, leftSquareBracket, rightSquareBracket } = ASCII_CODES
-
         content =
           <>
             {leftSquareBracket}
-            {object[key].map((elem: Data, index: number) => {
-              const arrayPath = `${objectPath}[${index}]`
-
-              return (
-                <div key={arrayPath} className='indented'>
-                  {leftCurlyBracket}
-                  <ResponseObject object={elem} onChangeInput={onChangeInput} path={arrayPath} />
-                  {rightCurlyBracket}
-                </div>
-              )
-            })}
+            {object[key].map((elem: Data, index: number) =>
+              <ResponseObject
+                object={elem}
+                onChangeInput={onChangeInput}
+                path={`${objectPath}[${index}]`}
+              />)}
             {rightSquareBracket}
           </>
+        break
+      } else if (object[key]) {
+        // This is not needed for this demo but in case the object is not null/array
+        clickable = false
+        content =
+          <ResponseObject object={object[key]} onChangeInput={onChangeInput} path={objectPath} />
         break
       }
     default:

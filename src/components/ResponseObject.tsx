@@ -3,11 +3,19 @@ import { Data, OnChangeInput } from "./types";
 import { getContent } from "./utils";
 import PropertyWrapper from './PropertyWrapper'
 
-type Props = { object: Data, onChangeInput: OnChangeInput, path?: string }
+type Props = { object: Data, onChangeInput: OnChangeInput, path?: string, hideBrackets?: boolean }
 
-export default function ResponseObject({ object, onChangeInput, path }: Props) {
+const ASCII_CODES = {
+  leftCurlyBracket: <>&#123;</>,
+  rightCurlyBracket: <>&#125;</>,
+}
+
+export default function ResponseObject({ object, onChangeInput, path, hideBrackets = false }: Props) {
+  const { leftCurlyBracket, rightCurlyBracket } = ASCII_CODES
+
   return (
-    <div>
+    <div key={path} className='indented'>
+      {!hideBrackets && leftCurlyBracket}
       {Object.keys(object).map((key) => {
         const { content, onClick, clickable, objectPath } = getContent(object, key, onChangeInput, path)
 
@@ -17,6 +25,7 @@ export default function ResponseObject({ object, onChangeInput, path }: Props) {
           </PropertyWrapper>
         )
       })}
+      {!hideBrackets && rightCurlyBracket}
     </div>
   )
 };
