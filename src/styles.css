@@ -12,8 +12,12 @@ input {
   margin-bottom: 5px;
 }
 
-.clickable-property {
+.property-button {
   color: cornflowerblue;
+  border: 0;
+    background: none;
+    font-family: monospace;
+    padding: 0;
 }
 
 .indented {

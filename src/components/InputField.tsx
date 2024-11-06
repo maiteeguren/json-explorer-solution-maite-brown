@@ -1,7 +1,7 @@
 import React from "react";
-import { OnChangeInput } from "./types";
+import { Property, OnChangeInput, PropertyValue } from "./types";
 
-type Props = { inputProperty: string, onChangeInput: OnChangeInput, inputResponse: string }
+type Props = { inputProperty: Property, onChangeInput: OnChangeInput, inputResponse: PropertyValue }
 
 export default function InputField({ inputProperty, onChangeInput, inputResponse }: Props) {
     return (

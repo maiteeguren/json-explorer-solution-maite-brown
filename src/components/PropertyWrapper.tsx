@@ -1,11 +1,21 @@
 import React from "react";
+import { Data, Property } from "./types";
 
-export default function Wrapper({ property, children, onClick, clickable }: { onClick: () => void, property: string, children: React.ReactNode, clickable: boolean }) {
+type Props = { onClick: () => void, property: Property, children: React.ReactNode, clickable: boolean }
+
+export default function Wrapper({ property, children, onClick, clickable }: Props) {
   return (
     <div className="indented">
-      <span className={clickable ? "clickable-property" : ""}
-        onClick={clickable ? () => onClick() : () => { }}
-      >{property}: </span>
+      {
+        clickable ? (
+          <button className="property-button"
+            onClick={onClick}
+          >{property}</button>
+        ) : (
+          <span>{property}</span>
+        )
+      }
+      {': '}
       {children}
       {','}
     </div>

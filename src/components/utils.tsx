@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Data, OnChangeInput } from './types';
+import { Data, OnChangeInput, Property } from './types';
 import ResponseObject from './ResponseObject';
 
 const ASCII_CODES = {
@@ -9,7 +9,7 @@ const ASCII_CODES = {
   rightSquareBracket: <>&#93;</>,
 }
 
-export const getContent = (object: Data, key: string, onChangeInput: OnChangeInput, path = 'res') => {
+export const getContent = (object: Data, key: Property, onChangeInput: OnChangeInput, path = 'res') => {
   const objectPath: string = `${path}.${key}`
   const onClick = () => onChangeInput(objectPath)
   let clickable = true
