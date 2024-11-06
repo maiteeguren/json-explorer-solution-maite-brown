@@ -9,10 +9,10 @@ export default function ResponseObject({ object, onChangeInput, path }: Props) {
   return (
     <div>
       {Object.keys(object).map((key) => {
-        const { content, onClick, clickable } = getContent(object, key, onChangeInput, path)
+        const { content, onClick, clickable, objectPath } = getContent(object, key, onChangeInput, path)
 
         return (
-          <PropertyWrapper key={key} property={key} onClick={onClick} clickable={clickable}>
+          <PropertyWrapper key={key} property={key} onClick={onClick} clickable={clickable} path={objectPath}>
             {content}
           </PropertyWrapper>
         )

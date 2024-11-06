@@ -48,5 +48,5 @@ export const getContent = (object: Data, key: Property, onChangeInput: OnChangeI
       break
   }
 
-  return { content, onClick, clickable }
+  return { content, onClick, clickable, objectPath }
 }

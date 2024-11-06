@@ -6,9 +6,10 @@ type Props = { inputProperty: Property, onChangeInput: OnChangeInput, inputRespo
 export default function InputField({ inputProperty, onChangeInput, inputResponse }: Props) {
     return (
         <div>
-            <label htmlFor="property-input" className="label">Property</label>
-            <input type="text" id="property-input" className="monospace text-box" value={inputProperty} onChange={(e) => onChangeInput(e.target.value)} />
-            <div className="monospace property-response-field">
+            <div className="label">Response</div>
+            <label htmlFor="property-input" hidden>Enter a property name to display its value</label>
+            <input type="text" id="property-input" data-testid='input-field' className="monospace text-box" value={inputProperty} onChange={(e) => onChangeInput(e.target.value)} />
+            <div className="monospace property-response-field" data-testid='property-response-field'>
                 <>{inputResponse}</>
             </div>
         </div>
