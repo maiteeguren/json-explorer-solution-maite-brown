@@ -23,7 +23,6 @@ export default function PropertyWrapper({ property, children, onClick, clickable
       }
       {': '}
       {children}
-      {','}
     </div>
   )
 }

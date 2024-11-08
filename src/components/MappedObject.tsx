@@ -26,6 +26,7 @@ export default function MappedObject({ object, onChangeInput, path, hideBrackets
         )
       })}
       {!hideBrackets && rightCurlyBracket}
+      {!hideBrackets && ','}
     </div>
   )
 };

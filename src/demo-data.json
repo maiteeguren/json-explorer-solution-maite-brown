@@ -8,5 +8,17 @@
       "value": "DE81200505501265402568",
       "hasError": false
     }
-  ]
+  ],
+  "array": [
+    1,
+    2,
+    3,
+    {
+      "id": "4c212130",
+      "prop": "iban",
+      "value": "DE81200505501265402568",
+      "hasError": false
+    }
+  ],
+  "some": null 
 }

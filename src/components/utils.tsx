@@ -9,14 +9,14 @@ const ASCII_CODES = {
 
 export const getContent = (object: Data, key: Property, onChangeInput: OnChangeInput, path = 'res') => {
   const { leftSquareBracket, rightSquareBracket } = ASCII_CODES
-  const objectPath: string = `${path}.${key}`
+  const objectPath: string = typeof key === 'number' ? `${path}[${key}]` : `${path}.${key}`
   const onClick = () => onChangeInput(objectPath)
   let clickable = true
   let content
 
   switch (typeof object[key]) {
     case "string":
-      content = `'${object[key]}'`
+      content = `'${object[key]}',`
       break
     case "object":
       if (Array.isArray(object[key])) {
@@ -24,13 +24,12 @@ export const getContent = (object: Data, key: Property, onChangeInput: OnChangeI
         content =
           <>
             {leftSquareBracket}
-            {object[key].map((elem: Data, index: number) =>
-              <MappedObject
-                object={elem}
-                onChangeInput={onChangeInput}
-                path={`${objectPath}[${index}]`}
-              />)}
+            {object[key].map((elem: Data, index: number): any => {
+              const { content: elemContent } = getContent(object[key], index, onChangeInput, objectPath)
+              return elemContent
+            })}
             {rightSquareBracket}
+            {','}
           </>
         break
       } else if (object[key]) {
@@ -41,7 +40,7 @@ export const getContent = (object: Data, key: Property, onChangeInput: OnChangeI
         break
       }
     default:
-      content = String(object[key])
+      content = String(object[key]) + ','
       break
   }
 
